@@ -6,11 +6,13 @@
  
 <ion-content>
   <p>inicio</p>
+
   <ion-list>
-    <ion-item button detail lines="inset" *ngFor="let character of (characters | async)?.results" (click)="openDetails(character)">
+    <ion-item button detail lines="inset" *ngFor="let character of characters | async" (click)="openDetails(character)">
       {{ character.name }}
     </ion-item>
-  </ion-list>
+  </ion-list> 
 
   <p>fim</p>
+  
 </ion-content>
