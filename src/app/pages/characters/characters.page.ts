@@ -17,14 +17,11 @@ export class CharactersPage implements OnInit {
  
   ngOnInit() {
     this.characters = this.api.getCharacters();
-    this.characters.subscribe(data => {
-    console.log('my data: ', data);
-    });
-}
+  }
  
-  openDetails(character) {
-    let split = character.url.split('/');
-    let characterId = split[split.length-2];
-    this.router.navigateByUrl(`/tabs/characters/${characterId}`);
+  	
+  openDetails(character) {    
+    let charId = character.char_id;
+    this.router.navigateByUrl(`/tabs/characters/${charId}`, charId);
   }
 }
