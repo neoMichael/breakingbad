@@ -14,12 +14,21 @@ export class CharacterdetailsPage implements OnInit {
  
   character: Observable<any>;
   id: string;
- 
-  constructor(private activatedRoute: ActivatedRoute, private api: ApiService) { }
+  data:any;
+  
+  heart_icon:any = "heart-outline";
+  //like_icon;
+  //dislike_icon;
+
+  constructor(private router: Router,private activatedRoute: ActivatedRoute, private api: ApiService) { }
  
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');    
     this.character = this.api.getCharacter(this.id);
+    this.character.subscribe(data => {
+      // console.log('my data: ', data);
+      this.data = data[0];
+      });    
   }
  
 }

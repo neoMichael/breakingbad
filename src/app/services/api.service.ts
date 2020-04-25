@@ -12,14 +12,14 @@ export class ApiService {
         return this.http.get('https://www.breakingbadapi.com/api/episodes')
     }
     getEpisode(id) {
-        return this.http.get('https://www.breakingbadapi.com/api/episodes/${id}');
+        return this.http.get('https://www.breakingbadapi.com/api/episodes/'+id);
     }
     getCharacters() {
         return this.http.get('https://breakingbadapi.com/api/characters');
 
     }
     getCharacter(id) {
-        return this.http.get('https://breakingbadapi.com/api/characters/${id}');
+        return this.http.get('https://breakingbadapi.com/api/characters/'+id);
     }
 
     getQuotes() {
@@ -27,11 +27,10 @@ export class ApiService {
 
     }
     getQuote(id) {
-        return this.http.get('https://breakingbadapi.com/api/quotes/${id}');
+        return this.http.get('https://breakingbadapi.com/api/quotes/'+id);
     }
 
     getDeaths() {
         return this.http.get('https://breakingbadapi.com/api/deaths');
-
     }
 }

@@ -1,19 +1,39 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start" defaultHref="/tabs/characters">
+    <!-- <ion-buttons slot="start" defaultHref="/tabs/characters">
       <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>{{ character.name }}</ion-title>
+    </ion-buttons> -->
+    <ion-title *ngIf="data">{{ data.name }}</ion-title>
+    <ion-icon slot="end" (click)="close()" name="close-circle-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
  
 <ion-content padding>
- 
-  <ion-card>
-    <p>{{ character }}</p>
-    <p>{{ id }}</p>
+
+  <ion-card *ngIf="data">
+    <ion-card-header>
+      <ion-card-subtitle>{{data.category}}</ion-card-subtitle>
+      <ion-card-title>
+         
+        </ion-card-title>
+      
+      <img src="{{data.img}}">
+      
+    </ion-card-header>
+  
     <ion-card-content>
-      {{ character.name }}
+     <p>Name: <strong>{{data.name}}</strong></p>
+     <p>Nick Name: <strong>{{data.nickname}}</strong></p>
+     <p>DOB: <strong>{{data.birthday}}</strong></p>
+     <p>Portrayed: <strong>{{data.portrayed}}</strong></p>
+     <p>Status: <strong>{{data.status}}</strong></p>
+
+     <h5>Appearances:</h5>
+     <p *ngFor="let item of data.appearance">Season {{item}}</p>
+
+     <h5>Occupation:</h5>
+     <p *ngFor="let item of data.occupation">{{item}}</p>
+     
     </ion-card-content>
   </ion-card>
  

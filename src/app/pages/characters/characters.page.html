@@ -7,11 +7,19 @@
 <ion-content>
   <p>inicio</p>
 
-  <ion-list>
-    <ion-item button detail lines="inset" *ngFor="let character of characters | async" (click)="openDetails(character)">
-      <p>{{ character.name }}</p>
-    </ion-item>
-  </ion-list> 
+  
+  
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+          <ion-list>
+        <ion-item button detail lines="inset" *ngFor="let character of characters | async" (click)="openDetails(character)">
+          <p>{{ character.name }}</p>
+        </ion-item>
+        </ion-list>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
   <p>fim</p>
   
