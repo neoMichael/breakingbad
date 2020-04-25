@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>quotedetails</ion-title>
+    <ion-title *ngIf="data">{{ data.quote }}</ion-title>    
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngIf="data">
+    <ion-card-header>
+      <ion-card-subtitle>{{ data.series }}</ion-card-subtitle>
+      <ion-card-title>Author: {{ data.author }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+     <strong>Quote:</strong>
+      <h3>{{data.quote}}</h3>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
