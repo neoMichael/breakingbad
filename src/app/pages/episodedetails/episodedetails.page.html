@@ -9,7 +9,12 @@
   <ion-card *ngIf="data">
     <ion-card-header>
       <ion-card-subtitle>{{ data.series }}</ion-card-subtitle>
-      <ion-card-title>Episode: {{ data.title }}</ion-card-title>
+      <ion-card-title>Episode: {{ data.title }}
+        
+          <ion-icon  (click)="favourite(data.episode_id)" class="starIcon"  name="{{star_icon}}"></ion-icon>         
+         
+
+      </ion-card-title>
 
     </ion-card-header>
   

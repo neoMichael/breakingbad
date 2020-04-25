@@ -13,12 +13,12 @@ export class CharactersPage implements OnInit {
  
   characters: Observable<any>;
   character:any;
+
   constructor(private router: Router, private api: ApiService) { }
  
   ngOnInit() {
     this.characters = this.api.getCharacters();
-    this.characters.subscribe(data => {
-      console.log('my data: ', data);
+    this.characters.subscribe(data => {      
       this.character = data[0];
       });
   }
@@ -27,6 +27,10 @@ export class CharactersPage implements OnInit {
   openDetails(character) {    
     let charId = character.char_id;
     this.router.navigateByUrl('/tabs/characters/'+charId);
+  }
+  
+
+  loadData(e){        
   }
   
 }

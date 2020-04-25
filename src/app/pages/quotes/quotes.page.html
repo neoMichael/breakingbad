@@ -5,16 +5,8 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-searchbar name="searchText" [(ngModel)]="searchText" showCancelButton="focus" cancelButtonText="Cancel"></ion-searchbar>
 
-    <!-- <ion-list>
-      <div *ngFor="let item of [1,2,3,4,5,6,7]">
-        <ion-item *ngIf="search(item)" button detail lines="inset"  (click)="openDetails(quotes)">
-          Name
-        </ion-item>
-      </div>
-    
-</ion-list> -->
   <ion-list>
     <div *ngFor="let quote of quotes | async">
       <ion-item *ngIf="search(quote)" button detail lines="inset"  (click)="openDetails(quote)">
