@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>episodedetails</ion-title>
+    <ion-title *ngIf="data">{{ data.title }}</ion-title>
+    <ion-icon slot="end" (click)="close()" name="close-circle-outline"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="data">
+    <ion-card-header>
+      <ion-card-subtitle>{{ data.series }}</ion-card-subtitle>
+      <ion-card-title>Episode: {{ data.title }}</ion-card-title>
+
+    </ion-card-header>
+  
+    <ion-card-content>
+     <h5>Air Date: {{ data.air_date }}</h5>
+     <strong>Characters:</strong>
+     <ion-item *ngFor="let character of data.characters"> 
+       <ion-label>
+        {{character}}
+       </ion-label>
+     </ion-item>
+    </ion-card-content>
+  </ion-card>
+  
 
 </ion-content>
