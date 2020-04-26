@@ -1,22 +1,22 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Deaths</ion-title>
+    <ion-title>Mobile CA2 - Michael Santos - 2019287</ion-title>
   </ion-toolbar>
 </ion-header>
  
 <ion-content>
   <ion-searchbar name="searchText" [(ngModel)]="searchText" showCancelButton="focus" cancelButtonText="Cancel"></ion-searchbar>
-  <p>inicio</p>
 
+  <h1 class="ion-text-center">⚰️ Death Count</h1>
   <ion-list>
     <div *ngFor="let death of deathcount | async">
       <ion-item *ngIf="search(death)" >
-      <p>{{ death.death }}</p>
+      <p><em>{{ death.death }}</em> was dead by <strong>{{ death.responsible }}</strong></p>
     </ion-item>
     </div>
     
   </ion-list> 
 
-  <p>fim</p>
+  
   
 </ion-content>
