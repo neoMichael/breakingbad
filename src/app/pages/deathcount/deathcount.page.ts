@@ -17,8 +17,7 @@ export class DeathcountPage implements OnInit {
  
   ngOnInit() {
     this.deathcount = this.api.getDeaths();
-    this.deathcount.subscribe(data => {
-      console.log('my data: ', data);
+    this.deathcount.subscribe(data => {      
       });
   }
 

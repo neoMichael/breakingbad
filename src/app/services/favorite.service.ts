@@ -1,147 +1,78 @@
+	
 import { Injectable } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
+ 
+const STORAGE_CHARACTER_KEY = 'favouriteCharacters';
+const STORAGE_EPISODE_KEY = 'favouriteEpisodes';
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
+ 
+  constructor(private storage: Storage) { }
+ 
+  getAllFavouriteCharacters() {
+    return this.storage.get(STORAGE_CHARACTER_KEY);
+  }
+ 
+  isFavouriteCharacter(char_id) {
+    return this.getAllFavouriteCharacters().then(result => {
+      return result && result.indexOf(char_id) !== -1;
+    });
+  }
 
-  constructor() { }
-
-
-//Favourite character
-
-  characters = [];
-
-  addCharacterFavorite(id) {
-
-    let added = false;
-    let star_icon = "star-outline";
-
-    for (let item of this.characters) {
-
-      if (item.id === id) {
-
-        item.likes = !item.likes;
-        added = true;
-        
-        if(item.likes){
-            star_icon = "star";
-        }else{
-            star_icon = "star-outline";
-        }
-        break;
+ 
+  favouriteCharacter(char_id) {
+    return this.getAllFavouriteCharacters().then(result => {
+      if (result) {
+        result.push(char_id);
+        return this.storage.set(STORAGE_CHARACTER_KEY, result);
+      } else {
+        return this.storage.set(STORAGE_CHARACTER_KEY, [char_id]);
       }
-    }
-
-    if (!added) {
-        let data = {
-            id: id,
-            likes: true
-        }
-
-      this.characters.push(data);
-      star_icon = "star";
-    }
-    return star_icon;
+    });
+  }
+ 
+  unfavouriteCharacter(char_id) {
+    return this.getAllFavouriteCharacters().then(result => {
+      if (result) {
+        var index = result.indexOf(char_id);
+        result.splice(index, 1);
+        return this.storage.set(STORAGE_CHARACTER_KEY, result);
+      }
+    });
   }
 
 
-  getCharacterFavorite(id){
-
-    let star_icon;
-
-    if(this.characters.length < 1){        
-        star_icon = "star-outline";
-    }else{
-
-        for (let item of this.characters) {
-
-          if (item.id == id) {
-
-            if(item.likes){
-                star_icon = "star";
-            }else{
-                star_icon = "star-outline";
-            }
-            break;
-          }else{
-            
-            star_icon = "star-outline";
-          }
-        }
-      }
-    
-    return star_icon;
+  getAllFavouriteEpisodes() {
+    return this.storage.get(STORAGE_CHARACTER_KEY);
   }
-
-
-  //Favourite episode
-
-  episodes = [];
-    
-
-  addEpisodeFavorite(id) {
-
-    let added = false;
-    let star_icon = "star-outline";
-
-    for (let item of this.episodes) {
-
-      if (item.id === id) {
-
-        item.likes = !item.likes;
-        added = true;
-        
-        if(item.likes){
-            star_icon = "star";
-        }else{
-            star_icon = "star-outline";
-        }
-        break;
-      }
-    }
-
-    if (!added) {
-        let data = {
-            id: id,
-            likes: true
-        }
-
-      this.episodes.push(data);
-      star_icon = "star";
-    }
-    return star_icon;
+ 
+  isFavouriteEpisode(episode_id) {
+    return this.getAllFavouriteEpisodes().then(result => {
+      return result && result.indexOf(episode_id) !== -1;
+    });
   }
-
-
-  getEpisodeFavorite(id){
-
-    let star_icon;
-
-    if(this.episodes.length < 1){        
-        star_icon = "star-outline";
-    }else{
-
-        for (let item of this.episodes) {
-
-          if (item.id == id) {
-
-            if(item.likes){
-                star_icon = "star";
-            }else{
-                star_icon = "star-outline";
-            }
-            break;
-          }else{
-            
-            star_icon = "star-outline";
-          }
-        }
+ 
+  favouriteEpisode(episode_id) {
+    return this.getAllFavouriteEpisodes().then(result => {
+      if (result) {
+        result.push(episode_id);
+        return this.storage.set(STORAGE_CHARACTER_KEY, result);
+      } else {
+        return this.storage.set(STORAGE_CHARACTER_KEY, [episode_id]);
       }
-    
-    return star_icon;
+    });
   }
-
-
-
+ 
+  unfavouriteEpisode(episode_id) {
+    return this.getAllFavouriteEpisodes().then(result => {
+      if (result) {
+        var index = result.indexOf(episode_id);
+        result.splice(index, 1);
+        return this.storage.set(STORAGE_CHARACTER_KEY, result);
+      }
+    });
+  } 
 }

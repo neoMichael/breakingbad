@@ -1,8 +1,8 @@
-<ion-header>
+<ion-header>	
   <ion-toolbar color="primary">
-    <!-- <ion-buttons slot="start" defaultHref="/tabs/characters">
+    <ion-buttons slot="start" defaultHref="/tabs/characters">
       <ion-back-button></ion-back-button>
-    </ion-buttons> -->
+    </ion-buttons>
     <ion-title *ngIf="data">{{ data.name }}</ion-title>    
   </ion-toolbar>
 </ion-header>
@@ -13,10 +13,21 @@
     <ion-card-header>
       <ion-card-subtitle>{{data.category}}</ion-card-subtitle>
       <ion-card-title>
-         <ion-icon  (click)="favourite(data.char_id)" class="starIcon"  name="{{star_icon}}"></ion-icon>         
+
+
+
+
         </ion-card-title>
       
       <img src="{{data.img}}">
+
+      <ion-icon  (click)="unfavouriteCharacter()" *ngIf="isFavourite" class="starIcon"  name="star"></ion-icon>         
+      <ion-icon  (click)="favouriteCharacter()" *ngIf="!isFavourite" class="starIcon"  name="star-outline"></ion-icon>         
+      
+
+        
+        
+      
       
     </ion-card-header>
   

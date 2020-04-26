@@ -16,8 +16,7 @@ export class CharacterdetailsPage implements OnInit {
   character: Observable<any>;
   id: string;
   data:any;
-  
-  star_icon:any = "star-outline";
+  isFavourite = false;  
 
   constructor(
     private router: Router,
@@ -28,25 +27,28 @@ export class CharacterdetailsPage implements OnInit {
 
  
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');    
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+        
     this.character = this.api.getCharacter(this.id);
     this.character.subscribe(data => {
-      this.data = data[0];
+      this.data = data[0];      
       });
-      this.getFav();    
+
+      this.fav.isFavouriteEpisode(this.id).then(isFav => {
+      this.isFavourite = isFav;
+    });    
   }
 
   
-  getFav(){
-    console.log('here');
-      this.star_icon = this.fav.getCharacterFavorite(this.id);
+  favouriteCharacter() {
+    this.fav.favouriteCharacter(this.id).then(() => {
+      this.isFavourite = true;
+    });
   }
-
-
-  favourite(char_id){
-    this.star_icon = this.fav.addCharacterFavorite(char_id);    
-  }
-
-
  
+  unfavouriteCharacter() {
+    this.fav.unfavouriteCharacter(this.id).then(() => {
+      this.isFavourite = false;
+    });
+  } 
 }

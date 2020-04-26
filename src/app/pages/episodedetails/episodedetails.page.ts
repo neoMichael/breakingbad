@@ -14,8 +14,7 @@ export class EpisodedetailsPage implements OnInit {
   episode: Observable<any>;
   id:any;
   data:any;
-  
-  star_icon:any = "star-outline";
+  isFavourite = false;  
 
   
   constructor(
@@ -33,18 +32,26 @@ export class EpisodedetailsPage implements OnInit {
     this.episode.subscribe(data => {    
     this.data = data[0];
     });
-    this.getFav();    
+
+    this.fav.isFavouriteEpisode(this.id).then(isFav => {
+      this.isFavourite = isFav;
+    });    
+  }    
+  
+
+
+  favouriteEpisode() {
+    this.fav.favouriteEpisode(this.id).then(() => {
+      this.isFavourite = true;
+    });
   }
-
-
-  getFav(){    
-      this.star_icon = this.fav.getEpisodeFavorite(this.id);
-  }
-
-
-  favourite(episode_id){
-    this.star_icon = this.fav.addEpisodeFavorite(episode_id);    
+ 
+  unfavouriteEpisode() {
+    this.fav.unfavouriteEpisode(this.id).then(() => {
+      this.isFavourite = false;
+    });
   }
 
 
 }
+

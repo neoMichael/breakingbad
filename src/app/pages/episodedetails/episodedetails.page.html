@@ -1,7 +1,10 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" defaultHref="/tabs/episodes">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title *ngIf="data">{{ data.title }}</ion-title>
-    <ion-icon slot="end" (click)="close()" name="close-circle-outline"></ion-icon>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +14,8 @@
       <ion-card-subtitle>{{ data.series }}</ion-card-subtitle>
       <ion-card-title>Episode: {{ data.title }}
         
-          <ion-icon  (click)="favourite(data.episode_id)" class="starIcon"  name="{{star_icon}}"></ion-icon>         
+        <ion-icon  (click)="unfavouriteEpisode()" *ngIf="isFavourite" class="starIcon"  name="star"></ion-icon>         
+        <ion-icon  (click)="favouriteEpisode()" *ngIf="!isFavourite" class="starIcon"  name="star-outline"></ion-icon>         
          
 
       </ion-card-title>
